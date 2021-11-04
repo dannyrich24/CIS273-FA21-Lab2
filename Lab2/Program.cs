@@ -118,15 +118,49 @@ namespace Lab2
             // foreach token
                 // If token is an integer
                 // Push on stack
+            foreach (string t in tokens)
+            {
+                if (t != "+" && t != "*" && t != "-" && t != "/")
+                {
+                    double pushedInt = double.Parse(t);
+                    stack.Push(pushedInt);
+                }
+
 
                 // If token is an operator
-                    // Pop twice and save both values
-                    // (if you can't pop twice, then return null)
-                    // Perform operation on 2 values (in the correct order)
-                    // Push the result on to stack
+                // Pop twice and save both values
+                // (if you can't pop twice, then return null)
+                // Perform operation on 2 values (in the correct order)
+                // Push the result on to stack
+                else if (t == "+" || t == "*" || t == "-" || t == "/")
+                {
+                    if (stack.Count > 1)
+                    {
+                        double num2 = stack.Pop();
+                        double num1 = stack.Pop();
+
+                        if (t == "+")
+                        {
+                            stack.Push(num1 + num2);
+                        }
+                        else if (t == "*")
+                        {
+                            stack.Push(num1 * num2);
+                        }
+                        else if (t == "-")
+                        {
+                            stack.Push(num1 - num2);
+                        }
+                        else if (t == "/")
+                        {
+                            stack.Push(num1 / num2);
+                        }
+                    }
+                }
+            }
 
 
-            if( stack.Count != 1)
+            if ( stack.Count != 1)
             {
                 return null;
             }
